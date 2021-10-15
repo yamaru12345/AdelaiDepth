@@ -66,9 +66,7 @@ if __name__ == '__main__':
         img_torch = scale_torch(A_resize)[None, :, :, :]
         pred_depth = depth_model.inference(img_torch).cpu().numpy().squeeze()
         pred_depth_ori = cv2.resize(pred_depth, (rgb.shape[1], rgb.shape[0]))
-	
 	np.save(os.path.join(image_dir_out, img_name[:-4]+'npy'), pred_depth_ori)
-
         # if GT depth is available, uncomment the following part to recover the metric depth
         #pred_depth_metric = recover_metric_depth(pred_depth_ori, gt_depth)
 
